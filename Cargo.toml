@@ -15,3 +15,4 @@ rustdoc-args = ["--cfg", "docsrs"]
 axum = '0.5'
 async-trait = "0.1"
 serde = "1"
+resp-result = { version = "0.2", features = ["for-axum"] }

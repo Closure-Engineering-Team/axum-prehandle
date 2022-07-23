@@ -1,7 +1,4 @@
-use std::{
-    future::Future,
-    ops::{Deref, DerefMut},
-};
+use std::ops::{Deref, DerefMut};
 
 use async_trait::async_trait;
 use axum::{
@@ -21,7 +18,7 @@ where
     type Rejection;
 
     /// handler
-    async fn handling(request: &mut RequestParts<B>) -> Result<Self::Output,Self::Rejection>;
+    async fn handling(request: &mut RequestParts<B>) -> Result<Self::Output, Self::Rejection>;
 }
 
 pub struct PreHandling<B, H>(pub H::Output)
