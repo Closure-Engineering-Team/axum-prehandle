@@ -10,6 +10,7 @@ use axum::{
 };
 
 /// handle data before entry request handle
+#[async_trait]
 pub trait PreHandler<B>
 where
     B: Send,
@@ -18,11 +19,9 @@ where
     type Output;
     /// the error
     type Rejection;
-    /// future type
-    type Future: Future<Output = Result<Self::Output, Self::Rejection>> + Send;
 
     /// handler
-    fn handling(request: &mut RequestParts<B>) -> Self::Future;
+    async fn handling(request: &mut RequestParts<B>) -> Result<Self::Output,Self::Rejection>;
 }
 
 pub struct PreHandling<B, H>(pub H::Output)
