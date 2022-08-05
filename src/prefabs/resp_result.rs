@@ -25,7 +25,6 @@ where
     async fn handling(
         request: &mut axum::extract::RequestParts<B>,
     ) -> Result<Self::Output, Self::Rejection> {
-        T::handling(request).await
-        .map_err(|err|RespResult::Err(err))
+        T::handling(request).await.map_err(RespResult::err)
     }
 }
